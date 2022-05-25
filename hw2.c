@@ -1,29 +1,54 @@
 #include "hw2.h"
-int main(void)
+int main(int argc, char* argv[])
 {
-    FILE* fp = fopen("input.txt", "r");
-    if(!fp){
+    int new_line_flag = 0;
+    FILE* in = fopen(argv[1], "r");
+    if(!in){
         printf("FILE OPEN FAILED!\n");
         exit(0);
     }//file opened
+    FILE* out = fopen("hw2_result.txt", "w");
+    if(!out){
+        printf("FILE DOESN'T EXIST!\n");
+        exit(0);
+    }//file make failed
+
     while(1){//begin while
         int check;
-        check=fscanf(fp, "%s", command);//getcommand
-        if(check==EOF)    break;
+        if(fscanf(in, "%s", command)==EOF)   break;//getcommand
         if(!strcmp(command, "INSERT")){//Insert
-            fscanf(fp, "%d", &item);
-            insert(item);
+            fscanf(in, "%d", &item);
+            max_insert(item);
+            min_insert(item);
         }//end insert
-        /*else if(!strcmp(command, "ASCEND")){//Ascend
-            //fprintf
+
+        else if(!strcmp(command, "ASCEND")){//Ascend
+            for(int i=1; i<=min_heap_size; i++) copy_min_heap[i] = min_heap[i];
+            int j=min_heap_size;
+            if(new_line_flag)   fprintf(out, "\n");
+            for(int i=1; i<=j; i++)  fprintf(out, "%d ", min_delete_heap());
+            min_heap_size=j;
+            for(int i=1; i<=min_heap_size; i++) min_heap[i] = copy_min_heap[i];
+            new_line_flag=1;
         }//end ascend
+
         else if(!strcmp(command, "DESCEND")){
-            //fprintf
-        }//end descend*/
+            for(int i=1; i<=max_heap_size; i++) copy_max_heap[i] = max_heap[i];
+            int j=max_heap_size;
+            if(new_line_flag)   fprintf(out, "\n");
+            for(int i=1; i<=j; i++)  fprintf(out, "%d ", max_delete_heap());
+            max_heap_size=j;
+            for(int i=1; i<=max_heap_size; i++) max_heap[i] = copy_max_heap[i];
+            new_line_flag=1;
+        }//end descend
     }//end while
-    while(heap_size>0){
-        printf("%d", max_heap[heap_size]);
+    if(fclose(in)){
+        printf("FILE CLOSE ERROR\n");
+        exit(0);
     }
-    fclose(fp);
+    if(fclose(out)){
+        printf("FILE CLOSE ERROR\n");
+        exit(0);
+    }
     return 0;
 }

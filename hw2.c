@@ -16,7 +16,6 @@ int main(int argc, char* argv[])
         printf("FILE DOESN'T EXIST!\n");
         exit(0);
     }//file make failed
-    start=clock();
     while(1){//begin while
         int check;
         if(fscanf(in, "%s", command)==EOF)   break;//getcommand
@@ -46,7 +45,6 @@ int main(int argc, char* argv[])
             new_line_flag=1;
         }//end descend
     }//end while
-    end=clock();
     if(fclose(in)){
         printf("FILE CLOSE ERROR\n");
         exit(0);
@@ -56,6 +54,6 @@ int main(int argc, char* argv[])
         exit(0);
     }
     printf("output written to hw2_result.txt.\n");
-    printf("running time: %lf seconds\n", (double)(end-start)/CLOCKS_PER_SEC);
+    printf("running time: %lf seconds\n", running_time/CLOCKS_PER_SEC);
     return 0;
 }

@@ -27,6 +27,7 @@ void max_insert(int item)
     }//end if
     max_heap[++max_heap_size] = item;//initially input
     int i = max_heap_size;//for index
+    start=clock();
     while(i>1){//begin while
         if(item > max_heap[i/2]){//child > parent
             max_heap[i] = max_heap[i/2];
@@ -35,6 +36,8 @@ void max_insert(int item)
         else    break;
     }//end while
     max_heap[i] = item;//insert done
+    end=clock();
+    running_time = running_time + (double)(end-start);
 }//end insert
 
 
@@ -47,6 +50,7 @@ int max_delete_heap(void)
     int parent=1, child=2;
     int item=max_heap[1], tmp=max_heap[max_heap_size];
     max_heap_size--;
+    start=clock();
     while(child<max_heap_size){
         if((child < max_heap_size) && (max_heap[child] < max_heap[child+1]))    child++;
         if(tmp >= max_heap[child])  break;;
@@ -55,6 +59,8 @@ int max_delete_heap(void)
         child *= 2;
     }
     max_heap[parent] = tmp;
+    end=clock();
+    running_time = running_time + (double)(end-start);
     return item;
 }
 
@@ -66,6 +72,7 @@ void min_insert(int item)
     }//end if
     min_heap[++min_heap_size] = item;//initially input
     int i = min_heap_size;//for index
+    start=clock();
     while(i>1){//begin while
         if(item < min_heap[i/2]){//child < parent
             min_heap[i] = min_heap[i/2];
@@ -74,6 +81,8 @@ void min_insert(int item)
         else    break;
     }//end while
     min_heap[i] = item;//insert done
+    end=clock();
+    running_time = running_time + (double)(end-start);
 }//end func
 
 
@@ -86,6 +95,7 @@ int min_delete_heap(void)
     int parent=1, child=2;
     int item=min_heap[1], tmp=min_heap[min_heap_size];
     min_heap_size--;
+    start=clock();
     while(child < min_heap_size){
         if((child < min_heap_size) && (min_heap[child] > min_heap[child+1]))    child++;
         if(tmp <= min_heap[child])  break;;
@@ -94,5 +104,7 @@ int min_delete_heap(void)
         child *= 2;
     }
     min_heap[parent] = tmp;
+    end=clock();
+    running_time = running_time + (double)(end-start);
     return item;
 }

@@ -55,8 +55,8 @@ int main(int argc, char* argv[])
         printf("FILE CLOSE ERROR\n");
         exit(0);
     }
-    running_time=(double)end-(double)start;
+    running_time=((double)end-(double)start)/1000;
     printf("output written to hw2_result.txt.\n");
-    printf("running time: %lf seconds\n", (double)(running_time)/1000);
+    printf("running time: %lf seconds\n", running_time);
     return 0;
 }

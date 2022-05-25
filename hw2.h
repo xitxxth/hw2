@@ -37,7 +37,7 @@ void max_insert(int item)
     }//end while
     max_heap[i] = item;//insert done
     end=clock();
-    running_time += end-start;
+    running_time += (double)end-(double)start;
 }//end insert
 
 
@@ -61,7 +61,7 @@ int max_delete_heap(void)
     }
     max_heap[parent] = tmp;
     end=clock();
-    running_time += end-start;
+    running_time += (double)end-(double)start;
     return item;
 }
 
@@ -83,7 +83,7 @@ void min_insert(int item)
     }//end while
     min_heap[i] = item;//insert done
     end=clock();
-    running_time+=end-start;
+    running_time += (double)end-(double)start;
 }//end func
 
 
@@ -107,6 +107,6 @@ int min_delete_heap(void)
     }
     min_heap[parent] = tmp;
     end=clock();
-    running_time+=end-start;
+    running_time += (double)end-(double)start;
     return item;
 }

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <string.h>
+#include <string.h>//
 #define MAX_HEAP_SIZE 1000001
 #define MAX_COMMAND_SIZE 8
 int max_heap[MAX_HEAP_SIZE];//global array-heap

@@ -2,7 +2,7 @@
 int main(int argc, char* argv[])
 {
     if(argc!=2){
-        printf("The input file does not exist\n");
+        printf("usage: ./hw2 inptu_filename\n");
         exit(0);
     }
     int new_line_flag = 0;
@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
         printf("FILE DOESN'T EXIST!\n");
         exit(0);
     }//file make failed
+    start=clock();
     while(1){//begin while
         int check;
         if(fscanf(in, "%s", command)==EOF)   break;//getcommand
@@ -45,6 +46,7 @@ int main(int argc, char* argv[])
             new_line_flag=1;
         }//end descend
     }//end while
+    end=clock();
     if(fclose(in)){
         printf("FILE CLOSE ERROR\n");
         exit(0);
@@ -53,7 +55,8 @@ int main(int argc, char* argv[])
         printf("FILE CLOSE ERROR\n");
         exit(0);
     }
+    running_time=(double)end-(double)start;
     printf("output written to hw2_result.txt.\n");
-    printf("running time: %lf seconds\n", (double)(running_time));
+    printf("running time: %lf seconds\n", (double)(running_time)/1000);
     return 0;
 }

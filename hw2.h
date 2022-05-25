@@ -16,9 +16,12 @@ int min_delete_heap(void);
 int item;
 int max_heap_size=0;
 int min_heap_size=0;
+double running_time=0;
+clock_t end, start;
 
 void max_insert(int item)
 {//begin insert
+    start=clock();
     if(max_heap_size==MAX_HEAP_SIZE-1){
         printf("FULL\n");
         return;
@@ -33,6 +36,8 @@ void max_insert(int item)
         else    break;
     }//end while
     max_heap[i] = item;//insert done
+    end=clock();
+    running_time += end-start;
 }//end insert
 
 
@@ -42,6 +47,7 @@ int max_delete_heap(void)
         printf("EMPTY\n");
         exit(0);
     }
+    start=clock();
     int parent=1, child=2;
     int item=max_heap[1], tmp=max_heap[max_heap_size];
     max_heap_size--;
@@ -54,6 +60,8 @@ int max_delete_heap(void)
         child *= 2;
     }
     max_heap[parent] = tmp;
+    end=clock();
+    running_time += end-start;
     return item;
 }
 
@@ -63,6 +71,7 @@ void min_insert(int item)
         printf("FULL\n");
         return;
     }//end if
+    start=clock();
     min_heap[++min_heap_size] = item;//initially input
     int i = min_heap_size;//for index
     while(i>1){//begin while
@@ -73,11 +82,14 @@ void min_insert(int item)
         else    break;
     }//end while
     min_heap[i] = item;//insert done
+    end=clock();
+    running_time+=end-start;
 }//end func
 
 
 int min_delete_heap(void)
 {
+    start=clock();
     if(min_heap_size==0){
         printf("EMPTY\n");
         exit(0);
@@ -94,5 +106,7 @@ int min_delete_heap(void)
         child *= 2;
     }
     min_heap[parent] = tmp;
+    end=clock();
+    running_time+=end-start;
     return item;
 }

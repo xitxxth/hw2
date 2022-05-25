@@ -1,10 +1,14 @@
 #include "hw2.h"
 int main(int argc, char* argv[])
 {
+    if(argc!=2){
+        printf("The input file does not exist\n");
+        exit(0);
+    }
     int new_line_flag = 0;
     FILE* in = fopen(argv[1], "r");
     if(!in){
-        printf("FILE OPEN FAILED!\n");
+        printf("The input file does not exist\n");
         exit(0);
     }//file opened
     FILE* out = fopen("hw2_result.txt", "w");
@@ -50,5 +54,7 @@ int main(int argc, char* argv[])
         printf("FILE CLOSE ERROR\n");
         exit(0);
     }
+    printf("output written to hw2_result.txt.\n");
+    printf("running time: %.6f seconds", running_time);
     return 0;
 }

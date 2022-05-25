@@ -55,6 +55,6 @@ int main(int argc, char* argv[])
         exit(0);
     }
     printf("output written to hw2_result.txt.\n");
-    printf("running time: %lf seconds\n", running_time/1000);
+    printf("running time: %lf seconds\n", running_time);
     return 0;
 }
